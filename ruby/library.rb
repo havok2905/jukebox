@@ -20,7 +20,7 @@ files.each do | file |
   album  = path_list[1]
   song   = path_list[2]
 
-  if music?(song) && !File.directory?(song)
+  if music?(song) && !File.directory?(file)
 
     unless library.has_key? artist
       library[artist] = {}
