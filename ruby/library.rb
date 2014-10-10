@@ -20,15 +20,15 @@ files.each do | file |
   album  = path_list[1]
   song   = path_list[2]
 
-  unless library.has_key? artist
-    library[artist] = {}
-  end
-
-  unless library[artist].has_key? album
-    library[artist][album] = { songs: [] }
-  end
-
   if music?(song) && !File.directory?(song)
+
+    unless library.has_key? artist
+      library[artist] = {}
+    end
+
+    unless library[artist].has_key? album
+      library[artist][album] = { songs: [] }
+    end
 
     library[artist][album][:songs] << { name: song.gsub(/[.mp3, .mp4, .m4p, .m4a]/, ''), path: file }
   end
