@@ -1,5 +1,13 @@
 # Jukebox
 
+## Stack
+
+- Ubuntu
+- Ruby 2.1.3
+- Grape, ruby micro framework for rest apis
+- Rack
+- AngularJS
+
 ## Setup
 
 **This box will eventually be packaged. This set up process will simplify fairly soon**
