@@ -8,7 +8,14 @@
 - Rack
 - AngularJS
 
-## Setup
+## Vagrant Setup
+
+- `vagrant up`
+- `vagrant ssh`
+- `cd /srv/jukebox/ruby`
+- `rackup`
+
+## Manual Setup
 
 **This box will eventually be packaged. This set up process will simplify fairly soon**
 
@@ -26,3 +33,17 @@
 - `bundle install`
 - `cd ruby`
 - `rackup`
+
+## API
+
+All API calls are prefixed with an api route.
+All API responses are in JSON format
+
+Example route.
+
+`33.33.33.25:9292/api/XXXXXXXX/XXXXXXXX`
+
+### Library
+
+- `/library/collection` returns a JSON object with your entire music library
+at a given path.
