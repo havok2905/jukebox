@@ -1,5 +1,5 @@
 require 'grape'
-require './library.rb'
+require './jukebox/library.rb'
 
 module JukeBox
   class API < Grape::API

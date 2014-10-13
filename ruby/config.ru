@@ -1,4 +1,4 @@
 require 'rubygems'
 require 'rack'
-require './api.rb'
+require './jukebox/api.rb'
 run JukeBox::API
