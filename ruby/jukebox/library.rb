@@ -1,3 +1,5 @@
+require './media_config.rb'
+
 module JukeBox
   class Library
     class << self
@@ -13,10 +15,9 @@ module JukeBox
       end
 
       def collect_music
-        library_path = '/Volumes/The Void/backup/media/audio/music/'
         library = Hash.new
 
-        files = Dir["#{library_path}*/*/*"]
+        files = Dir["#{MediaConfig::MUSIC_LIBRARY}*/*/*"]
 
         files.each do | file |
           path_list = file.split('/').select do |dir|
