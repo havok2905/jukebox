@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html ng-app='JukeBoxApp'>
+  <head>
+    <title>Jukebox</title>
+    <script src='http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js'></script>
+    <script src='http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular-resource.js'></script>
+    <script src='js/app/main.js'></script>
+  </head>
+  <body ng-controller='MainController'>
+    <div ng-click='getMusic()'>{{ currentSong }}</div>
+    <div ng-click='getMusic()'>{{ library }}</div>
+  </body>
+</html>
