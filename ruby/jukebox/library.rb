@@ -1,10 +1,14 @@
 require './media_config.rb'
 require './file/music.rb'
 
+require 'pry'
+
 module JukeBox
   class Library
 
     class << self
+      attr_accessor :library
+
       def artist_init(artist, album, song)
         unless @library.has_key? artist
           @library[artist] = {}
@@ -24,18 +28,18 @@ module JukeBox
       def collect_music
         Dir["#{MediaConfig::MUSIC_LIBRARY}*/*/*"].each do |file|
           song = FileItem::Music.new file
-
+          #binding.pry
           if song.audio?
-            artist_init song.info
-            album_init song.info
-            song_init file, song.info
+            artist_init *song.info
+            album_init *song.info
+            song_init file, *song.info
           end
         end
 
-        @library = library
-        library
+        @library
       end
     end
 
+    @library = Hash.new
   end
 end
