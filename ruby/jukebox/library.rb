@@ -1,8 +1,6 @@
 require './media_config.rb'
 require './file/music.rb'
 
-require 'pry'
-
 module JukeBox
   class Library
 
@@ -28,7 +26,6 @@ module JukeBox
       def collect_music
         Dir["#{MediaConfig::MUSIC_LIBRARY}*/*/*"].each do |file|
           song = FileItem::Music.new file
-          #binding.pry
           if song.audio?
             artist_init *song.info
             album_init *song.info
