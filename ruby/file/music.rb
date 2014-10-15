@@ -1,7 +1,7 @@
-require './file/file.rb'
+require './file/base.rb'
 
-module File
-  class Music < File
+module FileItem
+  class Music < FileItem::Base
 
     def initialize(path, pattern)
       path_list = self.split_path path

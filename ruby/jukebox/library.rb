@@ -23,7 +23,7 @@ module JukeBox
 
       def collect_music
         Dir["#{MediaConfig::MUSIC_LIBRARY}*/*/*"].each do |file|
-          song = File::Music.new file
+          song = FileItem::Music.new file
 
           if song.audio?
             artist_init song.info

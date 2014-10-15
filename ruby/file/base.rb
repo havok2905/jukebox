@@ -1,5 +1,5 @@
-module File
-  class File
+module FileItem
+  class Base
     class << self
       def split_path(path)
         path.split('/').select do |dir|
