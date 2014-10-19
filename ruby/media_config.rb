@@ -1,3 +1,3 @@
 module MediaConfig
-  MUSIC_LIBRARY = '/Volumes/The Void/backup/media/audio/music/'
+  MUSIC_LIBRARY = '/srv/music/'
 end
