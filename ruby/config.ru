@@ -1,21 +1,13 @@
 require 'rubygems'
 require 'rack'
+require 'rack/cors'
 require './jukebox/api.rb'
 
-# This is the root of our app
-@root = File.expand_path(File.join(File.dirname(__FILE__), "www"))
- 
-run Proc.new { |env|
-  # Extract the requested path from the request
-  req = Rack::Request.new(env)
-  index_file = File.join(@root, req.path_info, "index.html")
- 
-  if File.exists?(index_file)
-    # Rewrite to index
-    req.path_info += "index.html"
+use Rack::Cors do
+  allow do
+    origins '*'
+    resource '*', headers: :any, methods: :get
   end
-  # Pass the request to the directory app
-  Rack::Directory.new(@root).call(env)
-}
+end
 
 run JukeBox::API
