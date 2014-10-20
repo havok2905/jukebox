@@ -6,6 +6,9 @@ module FileItem
     def initialize(path)
 
       pattern = ['artist', 'album', 'song']
+      
+      #binding.pry
+       
       path_list = self.class.split_path path
       path_list = self.class.remove_root path_list, pattern
 

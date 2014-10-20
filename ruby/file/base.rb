@@ -9,6 +9,7 @@ module FileItem
 
       def remove_root(path, pattern)
         path.shift( path.count - pattern.count )
+        path
       end
     end
   end
