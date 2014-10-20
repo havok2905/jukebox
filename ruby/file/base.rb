@@ -3,7 +3,7 @@ module FileItem
     class << self
       def split_path(path)
         path.split('/').select do |dir|
-          path != '' || path != '.' || path != '..'
+          dir != '' && dir != '.' && dir != '..'
         end
       end
 
