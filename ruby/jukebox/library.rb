@@ -35,6 +35,12 @@ module JukeBox
 
         @library
       end
+
+      def artists
+        Dir["#{MediaConfig::MUSIC_LIBRARY}*"].map do |file|
+          file.split('/').last
+        end.uniq
+      end
     end
 
     @library = Hash.new

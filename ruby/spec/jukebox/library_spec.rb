@@ -36,5 +36,16 @@ describe JukeBox::Library do
       # This would much better be tested as an integration test
       # of the API class that uses this.
     end
+    
+    describe 'artists' do
+      let(:artist){ 'Clutch' }
+      it 'rertrieves artists' do
+        expect(JukeBox::Library.artists.count).to be > 0
+      end
+
+      it 'retirves a specific artist' do
+        expect(JukeBox::Library.artists.include? artist).to be true
+      end
+    end
   end
 end

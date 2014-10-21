@@ -12,6 +12,11 @@ module JukeBox
       get :collection do
         JukeBox::Library.collect_music
       end
+      
+      desc 'returns a list of artists'
+      get :artists do
+        JukeBox::Library.artists
+      end
     end
   end
 end
