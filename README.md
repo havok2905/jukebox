@@ -1,5 +1,8 @@
 # Jukebox
 
+# MOST TESTS CURRENTLY BROKEN
+# ADDING FILE PATHS TO SONG QUERIES PROBABLY BROKE EVERYTHING
+
 ## Stack
 
 - Ubuntu
@@ -34,4 +37,4 @@ at a given path. This is a very intense server call that will take several secon
 - `/library/artist_albums?artist=<artist_name>` returns an array of album names from the artist
 - `/library/album_songs?artist=<artist_name>&album=<album_name>` returns a list of songs for a particular album
 - `/library/artist_songs?artist=<artist_name>` returns an array of songs in the following format
-- - `[ artist, album, song ]`
+- - `[ artist, album, song, path ]`
