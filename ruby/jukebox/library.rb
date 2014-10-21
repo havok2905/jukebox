@@ -41,6 +41,25 @@ module JukeBox
           file.split('/').last
         end.uniq
       end
+      
+      def artist_albums(artist)
+        Dir["#{MediaConfig::MUSIC_LIBRARY}/#{artist}/*"].map do |file|
+          file.split('/').last
+        end.uniq
+      end
+
+      def album_songs(artist, album)
+        Dir["#{MediaConfig::MUSIC_LIBRARY}/#{artist}/#{album}/*"].map do |file|
+          file.split('/').last
+        end.uniq
+      end
+
+      def artist_songs(artist)
+        Dir["#{MediaConfig::MUSIC_LIBRARY}/#{artist}/*/*"].map do |file|
+          song = FileItem::Music.new file
+          song.info
+        end.uniq
+      end
     end
 
     @library = Hash.new
