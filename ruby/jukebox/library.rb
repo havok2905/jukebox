@@ -42,6 +42,17 @@ module JukeBox
         end.uniq
       end
 
+      def query(pattern)
+        Dir["#{MediaConfig::MUSIC_LIBRARY}#{pattern}"].map do |file|
+          song = FileItem::Music.new file
+          response = song.info
+          response << file
+          response if song.audio?
+        end.uniq.select do |song|
+          song unless song.nil?
+        end
+      end
+
       def artists
         self.simple_query '/*'
       end
@@ -51,14 +62,11 @@ module JukeBox
       end
 
       def album_songs(artist, album)
-        self.simple_query "/#{artist}/#{album}/*"
+        self.query "/#{artist}/#{album}/*"
       end
 
       def artist_songs(artist)
-        Dir["#{MediaConfig::MUSIC_LIBRARY}/#{artist}/*/*"].map do |file|
-          song = FileItem::Music.new file
-          song.info
-        end.uniq
+        self.query "/#{artist}/*/*"
       end
     end
 
