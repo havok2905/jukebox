@@ -8,6 +8,8 @@ describe JukeBox::API do
     JukeBox::API
   end
   
+  let(:song){ '01-Mercury' }
+  let(:song_file){ '01 - Mercury.mp3' }
   let(:album){ 'Blast Tyrant' }
   let(:artist){ 'Clutch' }
 
@@ -36,6 +38,61 @@ describe JukeBox::API do
 
     it 'is successful' do
       expect(last_response.status).to eq(200)
+    end
+
+    it 'should return a list of artists' do
+      response = JSON.parse last_response.body
+      expect(response.count).to be > 0
+      expect(response.include? artist).to be true
+    end
+  end
+
+  describe 'GET /api/v1/library/artist_songs' do
+    before do
+      get '/api/v1/library/artist_songs?artist=Clutch'
+    end
+
+    it 'is successful' do
+      expect(last_response.status).to eq(200)
+    end
+
+    it 'should return a list of songs' do
+      response = JSON.parse last_response.body
+      expect(response.count).to be > 0
+      info = [artist, album, song]
+      expect(response.include? info).to be true
+    end
+  end
+
+  describe 'GET /api/v1/library/album_songs' do
+    before do
+      get '/api/v1/library/album_songs?artist=Clutch&album=Blast%20Tyrant'
+    end
+
+    it 'is successful' do
+      expect(last_response.status).to eq(200)
+    end
+
+    it 'should return a list of songs' do
+      response = JSON.parse last_response.body
+      expect(response.count).to be > 0
+      expect(response.include? song_file).to be true
+    end
+  end
+
+  describe 'GET /api/v1/library/artist_albums' do
+    before do
+      get '/api/v1/library/artist_albums?artist=Clutch'
+    end
+
+    it 'is successful' do
+      expect(last_response.status).to eq(200)
+    end
+    
+    it 'should return a list of albums' do
+      response = JSON.parse last_response.body
+      expect(response.count).to be > 0
+      expect(response.include? album).to be true
     end
   end
 end
