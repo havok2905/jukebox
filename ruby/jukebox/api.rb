@@ -3,7 +3,7 @@ require './jukebox/library.rb'
 
 module JukeBox
   class API < Grape::API
-    version 'v1', using: :header, vendor: 'jukebox'
+    version 'v1', using: :path, vendor: 'jukebox'
     format :json
     prefix :api
 

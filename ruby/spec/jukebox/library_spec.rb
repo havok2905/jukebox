@@ -1,14 +1,6 @@
 require_relative '../../jukebox/library.rb'
 
 describe JukeBox::Library do
-  context 'assignment' do
-    context 'class variables' do
-      it 'should assign Library' do
-        expect(JukeBox::Library.library).to eq(Hash.new)
-      end
-    end
-  end
-
   context 'class_methods' do
     before do
       JukeBox::Library.library = Hash.new
