@@ -35,23 +35,23 @@ module JukeBox
 
         @library
       end
-
-      def artists
-        Dir["#{MediaConfig::MUSIC_LIBRARY}*"].map do |file|
+    
+      def simple_query(pattern)
+        Dir["#{MediaConfig::MUSIC_LIBRARY}#{pattern}"].map do |file|
           file.split('/').last
         end.uniq
+      end
+
+      def artists
+        self.simple_query '/*'
       end
       
       def artist_albums(artist)
-        Dir["#{MediaConfig::MUSIC_LIBRARY}/#{artist}/*"].map do |file|
-          file.split('/').last
-        end.uniq
+        self.simple_query "/#{artist}/*"
       end
 
       def album_songs(artist, album)
-        Dir["#{MediaConfig::MUSIC_LIBRARY}/#{artist}/#{album}/*"].map do |file|
-          file.split('/').last
-        end.uniq
+        self.simple_query "/#{artist}/#{album}/*"
       end
 
       def artist_songs(artist)
