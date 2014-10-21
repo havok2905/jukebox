@@ -1,6 +1,6 @@
 require_relative '../../jukebox/api.rb'
 require 'rack/test'
-
+require 'pry'
 describe JukeBox::API do
   include Rack::Test::Methods
 
@@ -8,6 +8,7 @@ describe JukeBox::API do
     JukeBox::API
   end
   
+  let(:path){ '/srv/music//Clutch/Blast Tyrant/01 - Mercury.mp3' }
   let(:song){ '01-Mercury' }
   let(:song_file){ '01 - Mercury.mp3' }
   let(:album){ 'Blast Tyrant' }
@@ -59,7 +60,7 @@ describe JukeBox::API do
     it 'should return a list of songs' do
       response = JSON.parse last_response.body
       expect(response.count).to be > 0
-      info = [artist, album, song]
+      info = [artist, album, song_file, path]
       expect(response.include? info).to be true
     end
   end
@@ -76,7 +77,8 @@ describe JukeBox::API do
     it 'should return a list of songs' do
       response = JSON.parse last_response.body
       expect(response.count).to be > 0
-      expect(response.include? song_file).to be true
+      info = [artist, album, song_file, path]
+      expect(response.include? info).to be true
     end
   end
 

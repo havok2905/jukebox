@@ -40,7 +40,7 @@ describe FileItem::Music do
 
     describe '.info' do
       it 'should return info about the song' do
-        expect(music.info).to match_array(['artist', 'album', 'song'])
+        expect(music.info).to match_array(['artist', 'album', 'song.mp4'])
       end
     end
   end
