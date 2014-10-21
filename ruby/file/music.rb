@@ -2,13 +2,10 @@ require './file/base.rb'
 
 module FileItem
   class Music < FileItem::Base
-
+    attr_accessor :path, :path_list, :pattern, :artist, :album, :song
     def initialize(path)
 
-      pattern = ['artist', 'album', 'song']
-      
-      #binding.pry
-       
+      pattern = ['artist', 'album', 'song']       
       path_list = self.class.split_path path
       path_list = self.class.remove_root path_list, pattern
 
