@@ -1,50 +1,51 @@
 require_relative '../../jukebox/library.rb'
-
+require_relative '../../media_config.rb'
+require 'pry'
 describe JukeBox::Library do
   context 'class_methods' do
     before do
-      JukeBox::Library.library = Hash.new
+      @library = JukeBox::Library.new MediaConfig::MUSIC_LIBRARY
     end
 
     describe '.artist_init' do
       it 'sets a key for an artist if none exists' do
-        JukeBox::Library.artist_init('artist', 'album', 'song')
-        expect(JukeBox::Library.library.has_key?('artist')).to be true
+        @library.artist_init('artist')
+        expect(@library.library.has_key?('artist')).to be true
       end
     end
-    
+
     describe '.album_init' do
       it 'sets a key for an artists album if non exists' do
-        JukeBox::Library.library['artist'] = Hash.new
-        JukeBox::Library.album_init('artist', 'album', 'song')
-        expect(JukeBox::Library.library['artist'].has_key?('album')).to be true
+        @library.library['artist'] = Hash.new
+        @library.album_init('artist', 'album')
+        expect(@library.library['artist'].has_key?('album')).to be true
       end
     end
 
     describe '.song_init' do
       it 'sets the song to the artists album array' do
-        JukeBox::Library.library['artist'] = Hash.new 
-        JukeBox::Library.library['artist']['album'] = Hash.new
-        JukeBox::Library.library['artist']['album'][:songs] = Array.new
-        JukeBox::Library.song_init('song.mp4', 'artist', 'album', 'song')
-        expect(JukeBox::Library.library['artist']['album'][:songs].first).to eq({:name=>"song", :path=>"song.mp4"})
+        @library.library['artist'] = Hash.new
+        @library.library['artist']['album'] = Hash.new
+        @library.library['artist']['album'][:songs] = Array.new
+        @library.song_init('song.mp4', 'artist', 'album', 'song')
+        expect(@library.library['artist']['album'][:songs].first).to eq({:name=>"song", :path=>"song.mp4"})
       end
     end
-   
+
     describe 'collect_music' do
       # This method really just implements to thop three methods
       # This would much better be tested as an integration test
       # of the API class that uses this.
     end
-    
+
     describe 'artists' do
       let(:artist){ 'Clutch' }
       it 'rertrieves artists' do
-        expect(JukeBox::Library.artists.count).to be > 0
+        expect(@library.artists.count).to be > 0
       end
 
       it 'retirves a specific artist' do
-        expect(JukeBox::Library.artists.include? artist).to be true
+        expect(@library.artists.include? artist).to be true
       end
     end
   end

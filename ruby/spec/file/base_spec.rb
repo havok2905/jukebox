@@ -17,11 +17,11 @@ describe FileItem do
         expect(result.include?('..')).to be_falsey
       end
     end
-    
+
     describe '.remove_root' do
       it 'should give me the last parts of a path' do
         path = ['foo' ,'bar', 'foo', 'artist', 'album', 'song.mp4']
-        expected = ['artist', 'album', 'song.mp4'] 
+        expected = ['artist', 'album', 'song.mp4']
         pattern = ['artist', 'album', 'song' ]
         result = FileItem::Base.remove_root path, pattern
         expect(result).to match_array(expected)

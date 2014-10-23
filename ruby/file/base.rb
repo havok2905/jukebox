@@ -11,6 +11,10 @@ module FileItem
         path.shift( path.count - pattern.count )
         path
       end
+
+      # Overwrite this method in child classes
+      def valid_type?
+      end
     end
   end
 end

@@ -26,9 +26,9 @@ describe FileItem::Music do
   end
 
   context 'instance methods' do
-    describe '.audio?' do
+    describe '.valid_type?' do
       it 'returns true if the music is an audio file' do
-        expect(music.audio?).to be_truthy
+        expect(music.valid_type?).to be_truthy
       end
     end
 

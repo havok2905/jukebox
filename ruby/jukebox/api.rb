@@ -1,5 +1,6 @@
 require 'grape'
 require './jukebox/library.rb'
+require './media_config.rb'
 
 module JukeBox
   class API < Grape::API
@@ -7,15 +8,21 @@ module JukeBox
     format :json
     prefix :api
 
+    helpers do
+      def library
+        JukeBox::Library.new MediaConfig::MUSIC_LIBRARY
+      end
+    end
+
     resource :library do
       desc 'return a a music library organizaed by artist, album, and song'
       get :collection do
-        JukeBox::Library.collect_music
+        library.collect_music
       end
-      
+
       desc 'returns a list of artists'
       get :artists do
-        JukeBox::Library.artists
+        library.artists
       end
 
       desc 'returns a list of an artists albums'
@@ -23,7 +30,7 @@ module JukeBox
         requires :artist, type: String, desc: 'artist name'
       end
       get :artist_albums do
-        JukeBox::Library.artist_albums params[:artist]
+        library.artist_albums params[:artist]
       end
 
       desc 'returns a list of songs in a given album'
@@ -32,7 +39,7 @@ module JukeBox
         requires :album, type: String, desc: 'album name'
       end
       get :album_songs do
-        JukeBox::Library.album_songs params[:artist], params[:album]
+        library.album_songs params[:artist], params[:album]
       end
 
       desc 'returns an artists songs by album'
@@ -40,7 +47,7 @@ module JukeBox
         requires :artist, type: String, desc: 'artist name'
       end
       get :artist_songs do
-        JukeBox::Library.artist_songs params[:artist]
+        library.artist_songs params[:artist]
       end
     end
   end
