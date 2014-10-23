@@ -1,5 +1,17 @@
 # Jukebox
 
+## Contributions
+
+To make a contribution to jukebox, do the following:
+
+- Create a new issue
+- Fork or create a new branch of Jukebox named after that issue
+- Write any additional code or modifications to existing code
+- Write RSpec tests for those additions/modifications
+- Ensure the entire test suite passes
+- If any tests fail due to something unrelated to your work, create a new issue and make note of this in the pull request comment
+- Open a new pull request and describe what you did
+
 ## Stack
 
 - Ubuntu
