@@ -7,7 +7,7 @@ describe JukeBox::API do
   def app
     JukeBox::API
   end
-  
+
   let(:path){ '/srv/music//Clutch/Blast Tyrant/01 - Mercury.mp3' }
   let(:song){ '01-Mercury' }
   let(:song_file){ '01 - Mercury.mp3' }
@@ -31,7 +31,7 @@ describe JukeBox::API do
       expect(test_songs.count).to be > 0
     end
   end
-  
+
   describe 'GET /api/v1/library/artists' do
     before do
       get '/api/v1/library/artists'
@@ -90,7 +90,7 @@ describe JukeBox::API do
     it 'is successful' do
       expect(last_response.status).to eq(200)
     end
-    
+
     it 'should return a list of albums' do
       response = JSON.parse last_response.body
       expect(response.count).to be > 0

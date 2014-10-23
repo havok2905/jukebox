@@ -4,7 +4,7 @@ require './file/music.rb'
 module FileItem
   class Library
 
-    attr_accessor :library
+    attr_accessor :library, :location
 
     def initialize(location)
       @location  = location
@@ -22,7 +22,6 @@ module FileItem
       Dir["#{@location}#{pattern}"].map do |file|
         file_object = file_type.new file
         response = file_object.info
-        response << file
         response if file_object.valid_type?
       end.uniq.select do |item|
         item unless item.nil?

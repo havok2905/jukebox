@@ -1,8 +1,8 @@
 require_relative '../../jukebox/library.rb'
 require_relative '../../media_config.rb'
-require 'pry'
+
 describe JukeBox::Library do
-  context 'class_methods' do
+  context 'instance_methods' do
     before do
       @library = JukeBox::Library.new MediaConfig::MUSIC_LIBRARY
     end
@@ -27,7 +27,7 @@ describe JukeBox::Library do
         @library.library['artist'] = Hash.new
         @library.library['artist']['album'] = Hash.new
         @library.library['artist']['album'][:songs] = Array.new
-        @library.song_init('song.mp4', 'artist', 'album', 'song')
+        @library.song_init('artist', 'album', 'song', 'song.mp4')
         expect(@library.library['artist']['album'][:songs].first).to eq({:name=>"song", :path=>"song.mp4"})
       end
     end

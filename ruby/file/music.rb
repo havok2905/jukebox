@@ -26,7 +26,7 @@ module FileItem
     end
 
     def info
-      [@artist, @album, @song]
+      [@artist, @album, @song, @path]
     end
   end
 end

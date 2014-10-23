@@ -15,6 +15,10 @@ module FileItem
       # Overwrite this method in child classes
       def valid_type?
       end
+
+      # Overwrite this method in child classes
+      def info
+      end
     end
   end
 end

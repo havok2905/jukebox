@@ -2,15 +2,14 @@ require_relative '../../file/music.rb'
 
 describe FileItem::Music do
   let(:music){ FileItem::Music.new('/srv/music/artist/album/song.mp4') }
+  let(:path){ '/srv/music/artist/album/song.mp4' }
+  let(:path_list){ ['artist', 'album', 'song.mp4'] }
+  let(:pattern){ ['artist', 'album', 'song']  }
+  let(:artist){ 'artist' }
+  let(:album){ 'album' }
+  let(:song){ 'song.mp4' }
 
   context 'initialization' do
-    let(:path){ '/srv/music/artist/album/song.mp4' }
-    let(:path_list){ ['artist', 'album', 'song.mp4'] }
-    let(:pattern){ ['artist', 'album', 'song']  }
-    let(:artist){ 'artist' }
-    let(:album){ 'album' }
-    let(:song){ 'song.mp4' }
-
     it 'initializes' do
       expect(music).to be_truthy
     end
@@ -40,7 +39,7 @@ describe FileItem::Music do
 
     describe '.info' do
       it 'should return info about the song' do
-        expect(music.info).to match_array(['artist', 'album', 'song.mp4'])
+        expect(music.info).to match_array([artist, album, song, path])
       end
     end
   end

@@ -16,7 +16,7 @@ module JukeBox
       end
     end
 
-    def song_init(file, artist, album, song)
+    def song_init(artist, album, song, file)
       @library[artist][album][:songs] << { name: song, path: file }
     end
 
@@ -26,7 +26,7 @@ module JukeBox
         if song.valid_type?
           artist_init song.artist
           album_init song.artist, song.album
-          song_init file, *song.info
+          song_init *song.info
         end
       end
 
