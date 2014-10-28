@@ -1,0 +1,33 @@
+require './jukebox/api.rb'
+require 'pry'
+
+task 'default' do
+  puts 'Please specify a specific task'
+end
+
+namespace 'api' do
+  desc 'display a list of unique api routes'
+  task 'routes' do
+
+    puts "\n\n\n"
+    puts "JUKEBOX API #{ JukeBox::API.versions.join ', ' }"
+
+    puts "\n\n"
+    JukeBox::API.routes.each do |r|
+
+      puts '- DESC'
+      puts "-- #{ r.route_description }"
+
+      unless r.route_params.empty?
+        puts '- PARAMS'
+        r.route_params.each do |r|
+          puts "-- #{ r.first }, #{ r.last[:type] } : #{ 'required' if r.last[:required] }"
+        end
+      end
+
+      puts '- PATH'
+      puts "-- #{ r.route_path }"
+      puts "\n"
+    end
+  end
+end
